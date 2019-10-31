@@ -1,7 +1,7 @@
 package io.github.reversor.todo.controller;
 
-import io.github.reversor.todo.dao.ToDoRepository;
 import io.github.reversor.todo.entity.ToDo;
+import io.github.reversor.todo.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("todo")
 public class ToDoController {
 
-    private ToDoRepository toDoRepository;
+    private ToDoService toDoService;
 
     @Autowired
-    public ToDoController(ToDoRepository toDoRepository) {
-        this.toDoRepository = toDoRepository;
+    public ToDoController(ToDoService toDoService) {
+        this.toDoService = toDoService;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createNewTodo(@RequestBody ToDo toDo) {
-        toDoRepository.save(toDo);
+        toDoService.createNewToDo(toDo);
     }
 
 }
