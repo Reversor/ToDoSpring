@@ -21,8 +21,8 @@ public class ToDoController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createNewTodo(@RequestBody ToDo toDo) {
-        toDoService.createNewToDo(toDo);
+    public Long createNewTodo(@RequestBody ToDo toDo) {
+        return toDoService.createNewToDo(toDo).getId();
     }
 
 }
